@@ -1,0 +1,116 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    color: #007bff;
+    text-align: center;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    background-color: #007bff; /* Blue background */
+    overflow: hidden;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* Evenly space items */
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links li a {
+    display: block;
+    color: white; /* White text */
+    text-align: center;
+    padding: 14px 20px; /* Adjust as needed */
+    text-decoration: none; /* No underline on links */
+    transition: color 0.3s, border-bottom 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.nav-links li a:hover {
+    color: #ffcc00; /* Change text color on hover */
+    border-bottom: 2px solid #ffcc00; /* Add underline on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Doctor Cards Styles */
+.doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.doctor-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.doctor-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: transform 0.3s; /* Smooth transition */
+}
+
+.doctor-card:hover img {
+    transform: rotate(360deg); /* Rotate image on hover */
+}
+
+.doctor-card h3 {
+    color: #007bff;
+    margin: 10px 0 5px;
+}
+
+.doctor-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

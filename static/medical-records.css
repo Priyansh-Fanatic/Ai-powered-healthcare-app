@@ -1,0 +1,19 @@
+/* Medical Records Page Styles */
+body {
+    background-color: #f4f4f4;
+}
+
+h2 {
+    color: #007bff;
+    text-align: center;
+}
+
+p {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
