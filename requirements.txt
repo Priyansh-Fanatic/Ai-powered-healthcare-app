@@ -1,0 +1,5 @@
+Flask==2.2.2
+Flask-Session==0.4.0
+mysql-connector-python==8.0.28
+bcrypt==3.2.0
+ollama==0.3.9  
