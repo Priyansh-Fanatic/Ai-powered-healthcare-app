@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='appointment.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Function to confirm appointment booking
+        function confirmAppointment(event) {
+            event.preventDefault(); // Prevent the form from submitting immediately
+            
+            // Get the values from the form
+            const name = document.getElementById("name").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            const consultation = document.getElementById("consultation").value;
+
+            // Create a confirmation message
+            const confirmationMessage = `Are you sure you want to book this appointment?\n\n` +
+                `Name: ${name}\n` +
+                `Date: ${date}\n` +
+                `Time: ${time}\n` +
+                `Consultation with: ${consultation}`;
+
+            // Show confirmation dialog
+            if (confirm(confirmationMessage)) {
+                document.getElementById("appointmentForm").submit(); // Submit the form if confirmed
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/medical-records">Medical Records</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/doctors">Doctors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Book an Appointment</h2>
+        <form action="/appointment" method="POST" id="appointmentForm" onsubmit="confirmAppointment(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            <label for="consultation">Consultation From:</label>
+            <select name="consultation" id="consultation" required>
+                <option value="select" disabled selected>Select for an appointment from below</option>
+                <option value="Physiotherapist">Physiotherapist</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Ophthalmologist">Ophthalmologist</option>
+            </select>
+            <button type="submit">Book Appointment</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2024 Healthcare Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

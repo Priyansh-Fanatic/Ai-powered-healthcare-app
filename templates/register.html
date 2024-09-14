@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='appointment.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/medical-records">Medical Records</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/doctors">Doctors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Register</h2>
+        <form action="{{ url_for('register') }}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="phone_no">Phone Number:</label>
+            <input type="text" id="phone_no" name="phone_no" required>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    </main>
+
+    <footer>
+        <p>© 2024 Healthcare Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

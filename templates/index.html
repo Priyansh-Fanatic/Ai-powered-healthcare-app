@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Healthcare Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/appointment">Appointment</a></li>
+                <li><a href="/medical-records">Medical Records</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/doctors">Doctors</a></li>
+            </ul>
+        </nav>
+        <nav class="account-nav">
+            <ul>
+                {% if logged_in %}
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                {% else %}
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Welcome to Our Healthcare Website</h1>
+            <p>Providing top-quality medical services for you and your family.</p>
+            <a href="/appointment" class="btn">Book an Appointment</a>
+        </section>
+
+        <!--<section id="services">
+            <h2>Our Healthcare Services</h2>
+            <ul>
+                <li>Emergency Care</li>
+                <li>Primary Care</li>
+                <li>Specialty Services</li>
+            </ul>
+        </section>-->
+
+        <section id="doctors">
+            <h2>Meet Our Doctors</h2>
+            <div class="doctor-card">
+                <img src="{{ url_for('static', filename='images/doctor1.jpeg') }}" alt="Doctor 1">
+                <h3>Dr. John Doe</h3>
+                <p>Cardiology</p>
+                <p>Education and Experience</p>
+            </div>
+            <!-- Add more doctor cards as needed -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Healthcare Website. All rights reserved.</p>
+    </footer>
+
+    <!-- Chatbot HTML -->
+    <div class="chatbot-toggler" id="chatbot-toggler">
+        <span>💬</span>
+    </div>
+
+    <div class="chatbot" id="chatbot" style="display: none;">
+        <header>
+            <h2>Chat with us!</h2>
+            <span id="close-chatbot" style="cursor: pointer;">&times;</span>
+        </header>
+        <div class="chatbox">
+            <ul id="chat-log"></ul>
+            <div class="chat-input">
+                <textarea id="user-input" placeholder="Ask your question..."></textarea>
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Loading spinner styles */
+        .loading {
+            display: none; /* Initially hidden */
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ff4757; /* Spinner color */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: inline-block; /* To center the spinner */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Conversational Image Recognition Chatbot</h1>
+            <p>Chat about your uploaded image</p>
+        </div>
+    </header>
+
+    <section class="chat-section">
+        <div class="container">
+            {% if uploaded_image %}
+                <img src="{{ url_for('static', filename='uploads/' + uploaded_image) }}" alt="Uploaded Image" class="uploaded-image">
+            {% else %}
+                <p>No image has been uploaded yet.</p>
+            {% endif %}
+            <div class="chat-container">
+                <div class="messages">
+                    {% if response %}
+                        <div class="message bot-message">
+                            <p>{{ response }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="loading"> 
+                    <div class="spinner"></div> <!-- Spinner for loading animation -->
+                    <p>Bot is typing...</p>
+                </div>
+                <form id="chat-form" action="{{ url_for('chat') }}" method="post">
+                    <input type="text" id="user-input" name="user_question" placeholder="Type your question..." required>
+                    <input type="hidden" name="uploaded_image" value="{{ uploaded_image }}">
+                    <input type="hidden" name="object_label" value="{{ object_label }}">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Conversational Image Recognition Chatbot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get user input
+            const userInput = document.getElementById('user-input').value;
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.innerHTML = `<p>${userInput}</p>`;
+            
+            // Append user's message to the chat messages
+            document.querySelector('.messages').appendChild(userMessage);
+
+            // Clear the input field
+            document.getElementById('user-input').value = '';
+
+            // Show loading message
+            const loadingMessage = document.querySelector('.loading');
+            loadingMessage.style.display = 'flex'; // Show loading message
+            loadingMessage.style.alignItems = 'center'; // Center align items
+            loadingMessage.style.justifyContent = 'center'; // Center align items
+
+            // Disable the input field and button
+            document.getElementById('user-input').disabled = true;
+            document.querySelector('button[type="submit"]').disabled = true;
+
+            // Send the question to the server
+            fetch('{{ url_for("chat") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'user_question': userInput,
+                    'uploaded_image': document.querySelector('input[name="uploaded_image"]').value,
+                    'object_label': document.querySelector('input[name="object_label"]').value
+                })
+            })
+            .then(response => response.text()) // Expecting plain text response
+            .then(data => {
+                // Create a new div for the chatbot's response
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                botMessage.innerHTML = `<p>${data}</p>`; // Directly use the plain text response
+                
+                // Append bot's message to the chat messages
+                document.querySelector('.messages').appendChild(botMessage);
+                
+                // Hide loading message
+                loadingMessage.style.display = 'none';
+
+                // Re-enable the input field and button
+                document.getElementById('user-input').disabled = false;
+                document.querySelector('button[type="submit"]').disabled = false;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'message bot-message';
+                errorMessage.innerHTML = `<p>Sorry, there was an error. Please try again.</p>`;
+                document.querySelector('.messages').appendChild(errorMessage);
+                
+                // Hide loading message
+                loadingMessage.style.display = 'none';
+
+                // Re-enable the input field and button
+                document.getElementById('user-input').disabled = false;
+                document.querySelector('button[type="submit"]').disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

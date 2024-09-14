@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='appointment.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/medical-records">Medical Records</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/doctors">Doctors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Login</h2>
+        <form id="loginForm" action="{{ url_for('login') }}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+    </main>
+
+    <footer>
+        <p>© 2024 Healthcare Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData(loginForm);
+                const response = await fetch(loginForm.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json(); // Parse the JSON response
+
+                if (result.success) {
+                    alert('Login successful!'); // Show success alert
+                    window.location.href = '/'; // Redirect to the index page
+                } else {
+                    alert(result.message); // Show error message
+                }
+            });
+        });
+    </script>
+</body>
+</html>

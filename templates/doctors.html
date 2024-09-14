@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctors.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/appointment">Appointment</a></li>
+                <li><a href="/medical-records">Medical Records</a></li>
+                <li><a href="/services">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Meet Our Doctors</h2>
+        <div class="doctor-grid">
+            <div class="doctor-card">
+                <img src="{{ url_for('static', filename='images/doctor1.jpeg') }}" alt="Doctor 1">
+                <h3>Dr. John Doe</h3>
+                <p>Cardiology</p>
+                <p>Education and Experience</p>
+            </div>
+            <!-- Add more doctor cards as needed -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Healthcare Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

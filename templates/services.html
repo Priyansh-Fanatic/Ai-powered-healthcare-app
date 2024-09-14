@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='services.css') }}">
+    <style>
+        /* Scrollbar styles for Webkit browsers */
+        ::-webkit-scrollbar {
+            width: 12px; /* Width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f4f4f4; /* Color of the track (part that is not being scrolled) */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0073e6; /* Color of the scrollbar handle */
+            border-radius: 10px; /* Rounded corners for the scrollbar handle */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0056b3; /* Darker color when hovering over the scrollbar handle */
+        }
+
+        /* Scrollbar styles for Firefox */
+        body {
+            scrollbar-width: thin; /* Make scrollbar thinner */
+            scrollbar-color: #0073e6 #f4f4f4; /* Thumb and track colors */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/appointment">Appointment</a></li>
+                <li><a href="/medical-records">Medical Records</a></li>
+                <li><a href="/doctors">Doctors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section class="services">
+            <h2>Our Healthcare Services</h2>
+            <div class="service-container">
+                <article class="service">
+                    <h3>Emergency Care</h3>
+                    <p>Immediate and specialized care for acute conditions and injuries, available 24/7.</p>
+                </article>
+                <article class="service">
+                    <h3>Primary Care</h3>
+                    <p>Your first point of contact for health check-ups, vaccination schedules, and more.</p>
+                </article>
+                <article class="service">
+                    <h3>Specialty Services</h3>
+                    <p>Highly specialized medical care in areas such as neurology, orthopedics, and more.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Healthcare Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
