@@ -9,7 +9,7 @@ try:
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="1471",
+        password="password",
         database="healthcare"
     )
 except mysql.connector.Error as err:
@@ -17,7 +17,7 @@ except mysql.connector.Error as err:
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="1471"
+        password="password"
     )
     c2 = mydb.cursor()
     c2.execute("CREATE DATABASE healthcare")
