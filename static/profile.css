@@ -1,0 +1,103 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Profile Info Styles */
+.profile-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.info p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #555;
+}
+
+.info p strong {
+    color: #333;
+}
+
+/* Update Profile Form Styles */
+.update-profile {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.update-profile h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.update-profile form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.update-profile label {
+    font-weight: bold;
+    color: #555;
+}
+
+.update-profile input[type="email"],
+.update-profile input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.update-profile button {
+    grid-column: 1 / -1;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.update-profile button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    position: fixed;
+    color: #141313;
+    margin-top: 30px;
+}
