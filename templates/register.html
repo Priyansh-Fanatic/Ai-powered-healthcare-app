@@ -6,6 +6,42 @@
     <title>Register</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='appointment.css') }}">
+    <style>
+        /* Basic modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,7 +57,7 @@
 
     <main>
         <h2>Register</h2>
-        <form action="{{ url_for('register') }}" method="post">
+        <form id="registerForm" action="{{ url_for('register') }}" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
             
@@ -42,5 +78,54 @@
     <footer>
         <p>© 2024 Healthcare Website. All rights reserved.</p>
     </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('successModal')">&times;</span>
+            <p>Registration successful! You can now log in.</p>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('errorModal')">&times;</span>
+            <p id="errorMessage">User already exists!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            const formData = new FormData(this);
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+    
+                const result = await response.json(); // Parse the JSON response
+    
+                if (result.success) {
+                    // Show success modal
+                    document.getElementById('successModal').style.display = 'block';
+                } else {
+                    // Update error message and show error modal
+                    document.getElementById('errorMessage').textContent = result.message;
+                    document.getElementById('errorModal').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                document.getElementById('errorMessage').textContent = 'An unexpected error occurred. Please try again later.';
+                document.getElementById('errorModal').style.display = 'block'; // Show error modal
+            }
+        });
+    
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none'; // Close the modal
+        }
+    </script>
 </body>
 </html>
