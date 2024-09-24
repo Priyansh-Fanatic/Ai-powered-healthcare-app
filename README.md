@@ -60,7 +60,7 @@ The chatbot functionality is powered by the **Meta Llama 3** model, which is one
 5. **Access the application:**
    - Open your web browser and go to 
       ```bash 
-      http://127.0.0.1:5000.
+      http://127.0.0.1:5000
       ```
 ## Conclution
 - The Healthcare Website is a robust application that leverages modern web technologies to provide essential healthcare services. With features like appointment booking, medical records access, and a chatbot, it aims to improve patient engagement and streamline healthcare access. This description provides a comprehensive overview of your project, highlighting its features, technologies, and usage instructions. Adjust any specific details as necessary to fit your project’s context. If you have any further questions or need additional assistance, feel free to ask!
