@@ -1,3 +1,27 @@
+// Function to confirm appointment booking
+function confirmAppointment(event) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    // Get the values from the appointment form
+    const name = document.getElementById("name").value;
+    const date = document.getElementById("appointment_date").value;
+    const time = document.getElementById("appointment_time").value;
+    const consultation = document.getElementById("consultation").value;
+
+    // Create a confirmation message
+    const confirmationMessage = `Are you sure you want to book this appointment?\n\n` +
+        `Name: ${name}\n` +
+        `Date: ${date}\n` +
+        `Time: ${time}\n` +
+        `Consultation with: ${consultation}`;
+
+    // Show confirmation dialog
+    if (confirm(confirmationMessage)) {
+        document.getElementById("appointmentForm").submit(); // Submit the form if confirmed
+    }
+}
+
+// Function to handle chatbot functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Chatbot functionality
     const chatbotToggler = document.getElementById('chatbot-toggler');
@@ -35,6 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Scroll to the bottom after adding the user message
             chatLog.scrollTop = chatLog.scrollHeight;
 
+            // Disable the send button and show a loading indicator
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Sending...';
+
             try {
                 // Send user input to the Flask backend
                 const response = await fetch('/ask', {
@@ -70,6 +98,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Scroll to the bottom after adding the error message
                 chatLog.scrollTop = chatLog.scrollHeight;
+            } finally {
+                // Re-enable the send button and restore the original text
+                sendBtn.disabled = false;
+                sendBtn.textContent = 'Send';
             }
         }
     });
@@ -82,3 +114,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Attach the confirmAppointment function to the appointment form's submit event
+document.addEventListener("DOMContentLoaded", function() {
+    const appointmentForm = document.getElementById("appointmentForm");
+    if (appointmentForm) {
+        appointmentForm.addEventListener("submit", confirmAppointment);
+    }
+});
+
+function confirmLogout(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    const confirmation = confirm("Are you sure you want to log out?");
+    if (confirmation) {
+        window.location.href = "/logout"; // Redirect to logout route
+    }
+}
