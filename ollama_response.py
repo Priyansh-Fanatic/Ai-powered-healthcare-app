@@ -28,9 +28,6 @@ def chat_with_bot(user_question):
 
 def main(user_question):
     try:
-        # Analyze the image and get the detected object
-        
-        # Start the chat loop
         while True:
             if user_question.lower() == 'exit' or user_question.lower == 'bye':
                 print("Goodbye...")
