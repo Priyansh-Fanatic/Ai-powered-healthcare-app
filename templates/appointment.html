@@ -6,7 +6,7 @@
     <title>Book Appointment</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='appointment.css') }}">
-    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    
     <script>
         // Function to confirm appointment booking
         function confirmAppointment(event) {
@@ -46,16 +46,19 @@
 
     <main>
         <h2>Book an Appointment</h2>
-        <form action="/appointment" method="POST" id="appointmentForm" onsubmit="confirmAppointment(event)">
+        <form action="{{ url_for('appointment') }}" method="POST" id="appointmentForm" onsubmit="confirmAppointment(event)">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
+            
             <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" name="appointment_date" required> <!-- Changed name to match your Flask route -->
+            
             <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required>
+            <input type="time" id="time" name="appointment_time" required> <!-- Changed name to match your Flask route -->
+            
             <label for="consultation">Consultation From:</label>
             <select name="consultation" id="consultation" required>
-                <option value="select" disabled selected>Select for an appointment from below</option>
+                <option value="" disabled selected>Select for an appointment from below</option>
                 <option value="Physiotherapist">Physiotherapist</option>
                 <option value="Cardiologist">Cardiologist</option>
                 <option value="Dermatologist">Dermatologist</option>
