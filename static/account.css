@@ -1,71 +1,81 @@
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Light background for the entire page */
 }
 
+/* Container for forms */
 .container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Maximum width for the form container */
+    margin: 50px auto; /* Center the container with top margin */
+    padding: 30px; /* Inner padding for the container */
+    background-color: #fff; /* White background for the form */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
+/* Header Styles */
 h1 {
-    text-align: center;
-    color: #333;
+    text-align: center; /* Center the heading */
+    color: #333; /* Dark gray color for the heading */
 }
 
+/* Form Group Styles */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Space between form groups */
 }
 
+/* Label Styles */
 label {
-    display: block;
-    font-weight: bold;
-    color: #555;
+    display: block; /* Labels should take up full width */
+    font-weight: bold; /* Bold text for labels */
+    color: #555; /* Medium gray color for labels */
 }
 
+/* Input and Select Styles */
 input[type="text"],
 input[type="password"],
 select {
-    width: 100%; /* Ensure full width */
-    padding: 12px; /* Increase padding for better appearance */
+    width: 100%; /* Full width for input fields */
+    padding: 12px; /* Increased padding for better appearance */
     margin-bottom: 20px; /* Space between fields */
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 3px; /* Slightly rounded corners */
     box-sizing: border-box; /* Include padding in width calculation */
 }
 
-
+/* Button Styles */
 .btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+    display: block; /* Button takes full width */
+    width: 100%; /* Full width for button */
+    padding: 10px; /* Padding for button */
+    background-color: #007bff; /* Primary blue color */
+    color: #fff; /* White text color */
+    border: none; /* No border */
+    border-radius: 3px; /* Slightly rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Increase font size for better readability */
 }
 
+/* Button Hover Effect */
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
+/* Paragraph Styles */
 p {
-    text-align: center;
-    margin-top: 20px;
+    text-align: center; /* Center text */
+    margin-top: 20px; /* Top margin for spacing */
 }
 
+/* Link Styles */
 a {
-    color: #007bff;
-    text-decoration: none;
+    color: #007bff; /* Primary blue color for links */
+    text-decoration: none; /* Remove underline from links */
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Underline on hover for better visibility */
 }
