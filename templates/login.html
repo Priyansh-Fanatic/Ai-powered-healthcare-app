@@ -37,25 +37,52 @@
         <p>© 2024 Healthcare Website. All rights reserved.</p>
     </footer>
 
+    <div id="errorModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" style="cursor: pointer;">&times;</span>
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const loginForm = document.getElementById('loginForm');
+            
+            // Function to show error messages in a modal
+            function showErrorModal(message) {
+                const modal = document.getElementById("errorModal");
+                const errorMessage = document.getElementById("errorMessage");
+                errorMessage.textContent = message;
+                modal.style.display = "block";
+    
+                // Close the modal when the user clicks on the close button
+                const closeButton = document.getElementsByClassName("close-button")[0];
+                closeButton.onclick = function() {
+                    modal.style.display = "none";
+                };
+            }
+    
             loginForm.addEventListener('submit', async function(event) {
                 event.preventDefault(); // Prevent the default form submission
-
+    
                 const formData = new FormData(loginForm);
-                const response = await fetch(loginForm.action, {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                const result = await response.json(); // Parse the JSON response
-
-                if (result.success) {
-                    alert('Login successful!'); // Show success alert
-                    window.location.href = '/'; // Redirect to the index page
-                } else {
-                    alert(result.message); // Show error message
+                try {
+                    const response = await fetch(loginForm.action, {
+                        method: 'POST',
+                        body: formData,
+                    });
+    
+                    const result = await response.json(); // Parse the JSON response
+    
+                    if (result.success) {
+                        alert('Login successful!'); // Show success alert
+                        window.location.href = '/'; // Redirect to the home page
+                    } else {
+                        showErrorModal(result.message); // Show error message in modal
+                    }
+                } catch (error) {
+                    console.error('Error during login:', error);
+                    showErrorModal('An unexpected error occurred. Please try again later.'); // Show unexpected error
                 }
             });
         });
